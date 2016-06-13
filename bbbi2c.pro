@@ -12,3 +12,4 @@ qtcAddDeployment()
 HEADERS += \
     CPBBoneBlackI2C.hpp
 
+CONFIG   += c++11

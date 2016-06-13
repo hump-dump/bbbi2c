@@ -2,10 +2,14 @@
 #define CPBBONEBLACKI2C_HPP
 
 
-class i2c
+class CPBBoneBlackI2C
 {
 public:
-   i2c();
+   CPBBoneBlackI2C();
+   bool openDevice();
+   bool closeDevice();
+private:
+   int mI2CHandle = -1;
 };
 
 #endif // CPBBONEBLACKI2C_HPP
