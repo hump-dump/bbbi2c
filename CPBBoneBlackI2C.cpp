@@ -28,7 +28,7 @@ bool CPBBoneBlackI2C::closeDevice()
 {
    bool result = false;
 
-   if( 0 <= close( mI2CHandle ) )
+   if( 0 <= mI2CHandle && 0 <= close( mI2CHandle ) )
    {
       result = true;
    }
