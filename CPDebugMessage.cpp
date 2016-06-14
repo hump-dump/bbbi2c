@@ -1,4 +1,4 @@
-#include "cpdebugmessage.hpp"
+#include "CPDebugMessage.hpp"
 #include <iostream>
 
 CPDebugMessage::CPDebugMessage()
