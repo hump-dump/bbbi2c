@@ -103,7 +103,7 @@ unsigned int CPBBoneBlackI2C::readTemperature()
    {
       // Write 0x2E into Register 0xF4
       // This requests a temperature reading
-      const bool result = writeByteData( mI2CHandle,0xF4,0x2E );
+      const bool result = writeByteData( 0xF4,0x2E );
 
       if( result  ) {
          usleep(500);
