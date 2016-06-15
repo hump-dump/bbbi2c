@@ -3,11 +3,15 @@
 
 #include <string>
 
+using namespace std;
+
 class CPDebugMessage
 {
 public:
-   CPDebugMessage();
-   static void debug( const std::string & message );
+   CPDebugMessage( const string & prefix );
+   void debug( const string & message );
+private:
+   const string mPrefix;
 };
 
 #endif // CPDEBUGMESSAGE_HPP
