@@ -67,7 +67,7 @@ bool CPBBoneBlackI2C::initSlave( const unsigned char & addr )
    return result;
 }
 
-bool CPBBoneBlackI2C::readByteData( const unsigned char & devRegister, unsigned char & data )
+bool CPBBoneBlackI2C::readByteData( const unsigned char & devRegister, uint8_t & data )
 {
    bool result = false;
 
@@ -76,14 +76,15 @@ bool CPBBoneBlackI2C::readByteData( const unsigned char & devRegister, unsigned 
       debug( "readByteData can't read data" );
       std::cout << byteData << strerror(byteData) << endl;
    } else {
-      data = byteData && 0xFF;
+      data = byteData;
+      std::cout << "readByteData data " << std::dec << byteData << endl;
       result = true;
    }
 
    return result;
 }
 
-bool CPBBoneBlackI2C::writeByteData( const unsigned char & command, const unsigned char & value )
+bool CPBBoneBlackI2C::writeByteData(const uint8_t & command, const uint8_t & value )
 {
    bool result = false;
 
@@ -129,7 +130,7 @@ unsigned int CPBBoneBlackI2C::readTemperature()
       const bool result = writeByteData( 0xF4,0x2E );
 
       if( result  ) {
-         usleep(500);
+         usleep(5000);
          // Read the two byte result from address 0xF6
          __s32 msb = i2c_smbus_read_byte_data( mI2CHandle,0xF6 );
          __s32 lsb = i2c_smbus_read_byte_data( mI2CHandle,0xF7 );

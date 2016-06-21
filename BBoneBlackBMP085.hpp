@@ -28,7 +28,8 @@ public:
 
    BBoneBlackBMP085();
    bool readCalibrationData();
-   bool readUncompensatedTemperature();
+   bool readUncompensatedTemperature( long & UncompensatedTemperature );
+   bool getTemperature( float & temperature );
 private:
    CPBBoneBlackI2C mI2CDevice;
    sBMP085CalibrationData mCalibrationData;

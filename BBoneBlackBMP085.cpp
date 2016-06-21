@@ -15,7 +15,7 @@ bool BBoneBlackBMP085::readCalibrationData()
    bool result = true;
 
    if( mI2CDevice.openDevice() ) {
-      if( mI2CDevice.initSlave( I2C_GYRO_ADDR ) ) {
+      if( mI2CDevice.initSlave( I2C_BMP085_ADDR ) ) {
          CPBBoneBlackI2C::uShort regData;
          // AC1: EPROM registers 0xAA, 0xAB
          if( mI2CDevice.readByteData( static_cast<unsigned char>(0xAA), regData.bytes[1] )
@@ -41,19 +41,11 @@ bool BBoneBlackBMP085::readCalibrationData()
          } else {
             result = false;
          }
-         // AC3: EPROM registers 0xAE, 0xAF
-         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xAE), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xAF), regData.bytes[0] ) ) {
-            mCalibrationData.AC3 = regData.sValue;
-            std::cout << "readCalibrationData AC4 " << mCalibrationData.AC3 << std::endl;
-         } else {
-            result = false;
-         }
          // AC4: EPROM registers 0xB0, 0xB1
          if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xB0), regData.bytes[1] )
              && mI2CDevice.readByteData( static_cast<unsigned char>(0xB1), regData.bytes[0] ) ) {
             mCalibrationData.AC4 = regData.uValue;
-            std::cout << "readCalibrationData AC5 " << mCalibrationData.AC4 << std::endl;
+            std::cout << "readCalibrationData AC4 " << mCalibrationData.AC4 << std::endl;
          } else {
             result = false;
          }
@@ -126,24 +118,26 @@ bool BBoneBlackBMP085::readCalibrationData()
    return result;
 }
 
-bool  BBoneBlackBMP085::readUncompensatedTemperature()
+bool  BBoneBlackBMP085::readUncompensatedTemperature( long & UncompensatedTemperature )
 {
    bool result = true;
 
    if( mI2CDevice.openDevice() ) {
-      if( mI2CDevice.initSlave( I2C_GYRO_ADDR ) ) {
+      if( mI2CDevice.initSlave( I2C_BMP085_ADDR ) ) {
          // Write 0x2E into Register 0xF4
          // This requests a temperature reading
          if( mI2CDevice.writeByteData( 0xF4,0x2E ) ) {
-            usleep( 5000 );
+            debug("Waiting...");
+            usleep( 10000 );
          } else {
             result = false;
          }
          CPBBoneBlackI2C::uShort regData;
 
-         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xF6), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xF7), regData.bytes[0] ) ) {
+         if( result && mI2CDevice.readByteData( 0xF6, regData.bytes[1] )
+             && mI2CDevice.readByteData( 0xF7, regData.bytes[0] ) ) {
             std::cout << "readUncompensatedTemperature sValue " << regData.sValue << std::endl;
+            UncompensatedTemperature = regData.sValue;
          } else {
             result = false;
          }
@@ -153,5 +147,18 @@ bool  BBoneBlackBMP085::readUncompensatedTemperature()
       }
    }
 
+   return result;
+}
+
+bool BBoneBlackBMP085::getTemperature( float & temperature )
+{
+   bool result = false;
+   long UT = 0;
+   if( readCalibrationData() && readUncompensatedTemperature( UT ) ) {
+      long X1 =( UT - mCalibrationData.AC6 ) * mCalibrationData.AC5 / ( static_cast<long>(0x01) << 15 );
+      long X2 = mCalibrationData.MC * ( static_cast<long>(0x01) << 11 ) /( X1 + mCalibrationData.MD );
+      temperature = ( X1 + X2 +8 ) / ( static_cast<long>(0x01) << 4 );
+      temperature /= 10;
+   }
    return result;
 }

@@ -10,7 +10,8 @@ int main()
 
    BBoneBlackBMP085 mBMP085;
    mBMP085.readCalibrationData();
-   mBMP085.readUncompensatedTemperature();
+   float temperature = 0;
+   mBMP085.getTemperature( temperature );
 
    return 0;
 }

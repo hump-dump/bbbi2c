@@ -23,8 +23,8 @@ public:
    bool openDevice();
    bool closeDevice();
    bool initSlave( const unsigned char & addr );
-   bool readByteData( const unsigned char & devRegister, unsigned char & data );
-   bool writeByteData( const unsigned char & command, const unsigned char & value );
+   bool readByteData(const unsigned char & devRegister, uint8_t & data );
+   bool writeByteData( const uint8_t & command, const uint8_t & value );
    bool initGyro();
    unsigned int readTemperature();
 protected:
