@@ -24,12 +24,15 @@ public:
       int16_t MB = 0;
       int16_t MC = 0;
       int16_t MD = 0;
+      bool isActual = false;
    };
 
    BBoneBlackBMP085();
-   bool readCalibrationData();
-   bool readUncompensatedTemperature( long & UncompensatedTemperature );
+   void init();
    bool getTemperature( float & temperature );
+protected:
+   void readCalibrationData();
+   bool readUncompensatedTemperature( long & UncompensatedTemperature );
 private:
    CPBBoneBlackI2C mI2CDevice;
    sBMP085CalibrationData mCalibrationData;

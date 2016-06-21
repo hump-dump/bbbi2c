@@ -10,7 +10,12 @@ BBoneBlackBMP085::BBoneBlackBMP085()
 
 }
 
-bool BBoneBlackBMP085::readCalibrationData()
+void BBoneBlackBMP085::init()
+{
+   readCalibrationData();
+}
+
+void BBoneBlackBMP085::readCalibrationData()
 {
    bool result = true;
 
@@ -114,8 +119,7 @@ bool BBoneBlackBMP085::readCalibrationData()
       debug( "can't open device" );
       result = false;
    }
-
-   return result;
+   mCalibrationData.isActual = result;
 }
 
 bool  BBoneBlackBMP085::readUncompensatedTemperature( long & UncompensatedTemperature )
@@ -127,8 +131,7 @@ bool  BBoneBlackBMP085::readUncompensatedTemperature( long & UncompensatedTemper
          // Write 0x2E into Register 0xF4
          // This requests a temperature reading
          if( mI2CDevice.writeByteData( 0xF4,0x2E ) ) {
-            debug("Waiting...");
-            usleep( 10000 );
+            usleep( 5000 );
          } else {
             result = false;
          }
@@ -154,7 +157,7 @@ bool BBoneBlackBMP085::getTemperature( float & temperature )
 {
    bool result = false;
    long UT = 0;
-   if( readCalibrationData() && readUncompensatedTemperature( UT ) ) {
+   if( mCalibrationData.isActual && readUncompensatedTemperature( UT ) ) {
       long X1 =( UT - mCalibrationData.AC6 ) * mCalibrationData.AC5 / ( static_cast<long>(0x01) << 15 );
       long X2 = mCalibrationData.MC * ( static_cast<long>(0x01) << 11 ) /( X1 + mCalibrationData.MD );
       temperature = ( X1 + X2 +8 ) / ( static_cast<long>(0x01) << 4 );
