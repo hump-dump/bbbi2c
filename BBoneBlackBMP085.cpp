@@ -21,91 +21,92 @@ void BBoneBlackBMP085::readCalibrationData()
 
    if( mI2CDevice.openDevice() ) {
       if( mI2CDevice.initSlave( I2C_BMP085_ADDR ) ) {
-         CPBBoneBlackI2C::uShort regData;
+         uint8_t msb = 0;
+         uint8_t lsb = 0;
          // AC1: EPROM registers 0xAA, 0xAB
-         if( mI2CDevice.readByteData( static_cast<unsigned char>(0xAA), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xAB), regData.bytes[0] ) ) {
-            mCalibrationData.AC1 = regData.sValue;
+         if( mI2CDevice.readByteData( static_cast<unsigned char>(0xAA), msb )
+             && mI2CDevice.readByteData( static_cast<unsigned char>(0xAB), lsb ) ) {
+            mCalibrationData.AC1 = ( msb << 8 ) + lsb;
             std::cout << "readCalibrationData AC1 " << mCalibrationData.AC1 << std::endl;
          } else {
             result = false;
          }
          // AC2: EPROM registers 0xAC, 0xAD
-         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xAC), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xAD), regData.bytes[0] ) ) {
-            mCalibrationData.AC2 = regData.sValue;
+         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xAC), msb )
+             && mI2CDevice.readByteData( static_cast<unsigned char>(0xAD), lsb ) ) {
+            mCalibrationData.AC2 = ( msb << 8 ) + lsb;
             std::cout << "readCalibrationData AC2 " << mCalibrationData.AC2 << std::endl;
          } else {
             result = false;
          }
          // AC3: EPROM registers 0xAE, 0xAF
-         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xAE), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xAF), regData.bytes[0] ) ) {
-            mCalibrationData.AC3 = regData.sValue;
+         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xAE), msb )
+             && mI2CDevice.readByteData( static_cast<unsigned char>(0xAF), lsb ) ) {
+            mCalibrationData.AC3 = ( msb << 8 ) + lsb;
             std::cout << "readCalibrationData AC3 " << mCalibrationData.AC3 << std::endl;
          } else {
             result = false;
          }
          // AC4: EPROM registers 0xB0, 0xB1
-         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xB0), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xB1), regData.bytes[0] ) ) {
-            mCalibrationData.AC4 = regData.uValue;
+         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xB0), msb )
+             && mI2CDevice.readByteData( static_cast<unsigned char>(0xB1), lsb ) ) {
+            mCalibrationData.AC4 = ( msb << 8 ) + lsb;
             std::cout << "readCalibrationData AC4 " << mCalibrationData.AC4 << std::endl;
          } else {
             result = false;
          }
          // AC5: EPROM registers 0xB2, 0xB3
-         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xB2), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xB3), regData.bytes[0] ) ) {
-            mCalibrationData.AC5 = regData.uValue;
+         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xB2), msb )
+             && mI2CDevice.readByteData( static_cast<unsigned char>(0xB3), lsb ) ) {
+            mCalibrationData.AC5 = ( msb << 8 ) + lsb;
             std::cout << "readCalibrationData AC5 " << mCalibrationData.AC5 << std::endl;
          } else {
             result = false;
          }
          // AC6: EPROM registers 0xB4, 0xB5
-         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xB4), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xB5), regData.bytes[0] ) ) {
-            mCalibrationData.AC6 = regData.uValue;
+         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xB4), msb )
+             && mI2CDevice.readByteData( static_cast<unsigned char>(0xB5), lsb ) ) {
+            mCalibrationData.AC6 = ( msb << 8 ) + lsb;
             std::cout << "readCalibrationData AC6 " << mCalibrationData.AC6 << std::endl;
          } else {
             result = false;
          }
          // B1: EPROM registers 0xB6, 0xB7
-         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xB6), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xB7), regData.bytes[0] ) ) {
-            mCalibrationData.B1 = regData.sValue;
+         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xB6), msb )
+             && mI2CDevice.readByteData( static_cast<unsigned char>(0xB7), lsb ) ) {
+            mCalibrationData.B1 = ( msb << 8 ) + lsb;
             std::cout << "readCalibrationData B1 " << mCalibrationData.B1 << std::endl;
          } else {
             result = false;
          }
          // B2: EPROM registers 0xB8, 0xB9
-         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xB8), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xB9), regData.bytes[0] ) ) {
-            mCalibrationData.B2 = regData.sValue;
+         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xB8), msb )
+             && mI2CDevice.readByteData( static_cast<unsigned char>(0xB9), lsb ) ) {
+            mCalibrationData.B2 = ( msb << 8 ) + lsb;
             std::cout << "readCalibrationData B2 " << mCalibrationData.B2 << std::endl;
          } else {
             result = false;
          }
          // MB: EPROM registers 0xBA, 0xBB
-         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xBA), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xBB), regData.bytes[0] ) ) {
-            mCalibrationData.MB = regData.sValue;
+         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xBA), msb )
+             && mI2CDevice.readByteData( static_cast<unsigned char>(0xBB), lsb ) ) {
+            mCalibrationData.MB = ( msb << 8 ) + lsb;
             std::cout << "readCalibrationData MB " << mCalibrationData.MB << std::endl;
          } else {
             result = false;
          }
          // MC: EPROM registers 0xBC, 0xBD
-         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xBC), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xBD), regData.bytes[0] ) ) {
-            mCalibrationData.MC = regData.sValue;
+         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xBC), msb )
+             && mI2CDevice.readByteData( static_cast<unsigned char>(0xBD), lsb ) ) {
+            mCalibrationData.MC = ( msb << 8 ) + lsb;
             std::cout << "readCalibrationData MC " << mCalibrationData.MC << std::endl;
          } else {
             result = false;
          }
          // MD: EPROM registers 0xBE, 0xBF
-         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xBE), regData.bytes[1] )
-             && mI2CDevice.readByteData( static_cast<unsigned char>(0xBF), regData.bytes[0] ) ) {
-            mCalibrationData.MD = regData.sValue;
+         if( result && mI2CDevice.readByteData( static_cast<unsigned char>(0xBE), msb )
+             && mI2CDevice.readByteData( static_cast<unsigned char>(0xBF), lsb ) ) {
+            mCalibrationData.MD = ( msb << 8 ) + lsb;
             std::cout << "readCalibrationData MD " << mCalibrationData.MD << std::endl;
          } else {
             result = false;
@@ -122,7 +123,7 @@ void BBoneBlackBMP085::readCalibrationData()
    mCalibrationData.isActual = result;
 }
 
-bool  BBoneBlackBMP085::readUncompensatedTemperature( long & UncompensatedTemperature )
+bool BBoneBlackBMP085::readUncompensatedTemperature( long & UncompensatedTemperature )
 {
    bool result = true;
 
@@ -135,18 +136,20 @@ bool  BBoneBlackBMP085::readUncompensatedTemperature( long & UncompensatedTemper
          } else {
             result = false;
          }
-         CPBBoneBlackI2C::uShort regData;
-
-         if( result && mI2CDevice.readByteData( 0xF6, regData.bytes[1] )
-             && mI2CDevice.readByteData( 0xF7, regData.bytes[0] ) ) {
-            std::cout << "readUncompensatedTemperature sValue " << regData.sValue << std::endl;
-            UncompensatedTemperature = regData.sValue;
+         uint8_t msb = 0;
+         uint8_t lsb = 0;
+         if( result
+             && mI2CDevice.readByteData( 0xF6, msb )
+             && mI2CDevice.readByteData( 0xF7, lsb ) ) {
+            UncompensatedTemperature = ( msb << 8 ) + lsb;
+            std::cout << "readUncompensatedTemperature sValue " << UncompensatedTemperature << std::endl;
          } else {
             result = false;
          }
          mI2CDevice.closeDevice();
       } else {
          debug( "can't open device" );
+         result = false;
       }
    }
 
@@ -155,13 +158,70 @@ bool  BBoneBlackBMP085::readUncompensatedTemperature( long & UncompensatedTemper
 
 bool BBoneBlackBMP085::getTemperature( float & temperature )
 {
-   bool result = false;
+   bool result = true;
+
    long UT = 0;
    if( mCalibrationData.isActual && readUncompensatedTemperature( UT ) ) {
       long X1 =( UT - mCalibrationData.AC6 ) * mCalibrationData.AC5 / ( static_cast<long>(0x01) << 15 );
       long X2 = mCalibrationData.MC * ( static_cast<long>(0x01) << 11 ) /( X1 + mCalibrationData.MD );
       temperature = ( X1 + X2 +8 ) / ( static_cast<long>(0x01) << 4 );
       temperature /= 10;
+   } else {
+      result = false;
    }
+
    return result;
+}
+
+bool BBoneBlackBMP085::readUncompensatedPressure( long & UncompensatedPressure )
+{
+   bool result = true;
+
+   if( mI2CDevice.openDevice() ) {
+      if( mI2CDevice.initSlave( I2C_BMP085_ADDR ) ) {
+         // Write 0x2E into Register 0xF4
+         // This requests a temperature reading
+         if( mI2CDevice.writeByteData( 0xF4,0x34 + ( BMP085_OSS << 6 ) ) ) {
+            usleep( 5000 );
+
+            uint8_t msb = 0;
+            uint8_t lsb = 0;
+            uint8_t xlsb = 0;
+
+            if( mI2CDevice.readByteData( 0xF6, msb )
+                && mI2CDevice.readByteData( 0xF7, lsb )
+                && mI2CDevice.readByteData( 0xF8, xlsb ) ) {
+               UncompensatedPressure = ( ( msb << 16 ) + ( lsb << 8 ) + xlsb ) >> ( 8 - BMP085_OSS );
+               std::cout << "readUncompensatedTemperature UncompensatedPressure " << UncompensatedPressure << std::endl;
+            } else {
+               debug( "reading pressure data failed" );
+               result = false;
+            }
+
+         } else {
+            debug( "write data failed" );
+            result = false;
+         }
+         mI2CDevice.closeDevice();
+      } else {
+         debug( "can't open device" );
+         result = false;
+      }
+   }
+
+   return result;
+}
+
+bool BBoneBlackBMP085::getPressure( long & pressure )
+{
+      bool result = true;
+
+      long UP = 0;
+      if ( readUncompensatedPressure( UP ) ) {
+         pressure = UP;
+      } else {
+         result = false;
+      }
+
+      return result;
 }

@@ -12,12 +12,6 @@ class CPBBoneBlackI2C
    : public CPDebugMessage
 {
 public:
-   union uShort {
-      int16_t sValue = 0x0;
-      uint16_t uValue;
-      uint8_t bytes[2]; // [ lsb, msb ]
-   };
-
    CPBBoneBlackI2C( const std::string & i2cDevice );
 
    bool openDevice();

@@ -5,7 +5,8 @@
 #include "CPBBoneBlackI2C.hpp"
 #include <cstdint>
 
-#define I2C_BMP085_ADDR 0x77 // Barometer + Thermometer	Bosch BMP085
+#define I2C_BMP085_ADDR 0x77  // Barometer + Thermometer	Bosch BMP085
+#define BMP085_OSS         0  // oversampling setting( ultra low power mode )
 
 class BBoneBlackBMP085
    : public CPDebugMessage
@@ -14,6 +15,7 @@ public:
    BBoneBlackBMP085();
    void init();
    bool getTemperature( float & temperature );
+   bool getPressure(long & pressure );
 protected:
 
    struct sBMP085CalibrationData {
@@ -33,6 +35,7 @@ protected:
 
    void readCalibrationData();
    bool readUncompensatedTemperature( long & UncompensatedTemperature );
+   bool readUncompensatedPressure( long & UncompensatedPressure );
 private:
    CPBBoneBlackI2C mI2CDevice;
    sBMP085CalibrationData mCalibrationData;
