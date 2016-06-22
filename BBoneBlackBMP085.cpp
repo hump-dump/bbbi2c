@@ -7,7 +7,7 @@ BBoneBlackBMP085::BBoneBlackBMP085()
    : CPDebugMessage( "BBoneBlackBMP085" )
    , mI2CDevice( "/dev/i2c-2" )
 {
-
+   mI2CDevice.setParent( *this );
 }
 
 void BBoneBlackBMP085::init()

@@ -10,8 +10,8 @@ class CPDebugMessage
 public:
    CPDebugMessage( const string & prefix );
    void debug( const string & message );
-   void setParent( CPDebugMessage * parent );
-   const std::string & getPrefix() {
+   void setParent( const CPDebugMessage & parent );
+   const std::string & getPrefix() const {
       return mPrefix;
    }
 private:

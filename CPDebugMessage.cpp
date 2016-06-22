@@ -7,12 +7,12 @@ CPDebugMessage::CPDebugMessage( const string & prefix )
 
 }
 
-void CPDebugMessage::setParent( CPDebugMessage * parent )
+void CPDebugMessage::setParent( const CPDebugMessage & parent )
 {
-   mPrefix = parent->getPrefix() + "`" + mPrefix;
+   mPrefix = parent.getPrefix() + "`" + mPrefix;
 }
 
 void CPDebugMessage::debug( const std::string & message )
 {
-   std::cout << mPrefix << ":" << message << std::endl;
+   std::cout << mPrefix << ": " << message << std::endl;
 }
