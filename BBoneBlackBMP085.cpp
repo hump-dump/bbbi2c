@@ -216,9 +216,32 @@ bool BBoneBlackBMP085::getPressure( long & pressure )
 {
       bool result = true;
 
+      long UT = 0;
       long UP = 0;
-      if ( readUncompensatedPressure( UP ) ) {
-         pressure = UP;
+      if ( readUncompensatedTemperature( UT ) && readUncompensatedPressure( UP ) ) {
+         long X1 =( UT - mCalibrationData.AC6 ) * mCalibrationData.AC5 / ( static_cast<long>(0x01) << 15 );
+         long X2 = mCalibrationData.MC * ( static_cast<long>(0x01) << 11 ) /( X1 + mCalibrationData.MD );
+         long B6 = X1 + X2 - 4000;
+         X1 = ( mCalibrationData.B2 * ( B6 / ( static_cast<long>(0x01) << 12 ) ) ) / ( static_cast<long>(0x01) << 11 );
+         X2 = mCalibrationData.AC2 * B6 / ( static_cast<long>(0x01) << 11 );
+         long X3 = X1 + X2;
+         long B3 = ( ( ( mCalibrationData.AC1*4 + X3 ) << BMP085_OSS ) + 2 ) / 4;
+         X1 = mCalibrationData.AC3 * B6 / ( static_cast<long>(0x01) << 12 );
+         X2 = ( mCalibrationData.B1 * ( B6 *B6 / ( static_cast<long>(0x01) << 12 ) ) )/ ( static_cast<long>(0x01) << 16 );
+         X3 = ( ( X1 + X2 ) + 2 ) / ( static_cast<long>(0x01) << 2 );
+         unsigned long B4 = mCalibrationData.AC4 * static_cast<unsigned long>( X3 + 32768 ) / ( static_cast<long>(0x01) << 15 );
+         unsigned long B7 = ( static_cast<unsigned long>( UP - B3) *( 5000 >> BMP085_OSS ) );
+         long p = 0;
+         if( B7 < 0x80000000 ) {
+            p = B7 *2 / B4;
+         } else {
+            p = B7 / B4 * 2;
+         }
+         X1 = ( p / ( static_cast<long>(0x01) << 8 ) ) * ( p / ( static_cast<long>(0x01) << 8 ) );
+         X1 = ( X1 * 3038 ) / ( static_cast<long>(0x01) << 16 );
+         X2 = ( -7357 * p ) / ( static_cast<long>(0x01) << 16 );
+         p = p + ( X1 + X2 + 3791 ) / ( static_cast<long>(0x01) << 4 );
+         pressure = p;
       } else {
          result = false;
       }
