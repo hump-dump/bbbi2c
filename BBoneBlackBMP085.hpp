@@ -11,6 +11,10 @@ class BBoneBlackBMP085
    : public CPDebugMessage
 {
 public:
+   BBoneBlackBMP085();
+   void init();
+   bool getTemperature( float & temperature );
+protected:
 
    struct sBMP085CalibrationData {
       int16_t AC1 = 0;
@@ -27,10 +31,6 @@ public:
       bool isActual = false;
    };
 
-   BBoneBlackBMP085();
-   void init();
-   bool getTemperature( float & temperature );
-protected:
    void readCalibrationData();
    bool readUncompensatedTemperature( long & UncompensatedTemperature );
 private:
