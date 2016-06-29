@@ -36,7 +36,7 @@ public:
       RANGE_5_6GA  = 0b11000000,
       RANGE_8_1GA  = 0b11100000
    };
-   enum eOperationMode {
+   enum eOperatingMode {
       OPMODE_CONTINUOUS = 0b00,
       OPMODE_SINGLE     = 0b01,
       OPMODE_IDLE       = 0b10,
@@ -44,9 +44,13 @@ public:
    };
 
    BBoneBlackMC5883L();
-   void setGain(  );
+
+   bool setGain( const BBoneBlackMC5883L::eGainValue & gainValue );
+   bool setOperationMode( const BBoneBlackMC5883L::eOperatingMode & opMode );
 private:
    CPBBoneBlackI2C mI2CDevice;
+   BBoneBlackMC5883L::eGainValue mCurrentGain = BBoneBlackMC5883L::RANGE_1_3GA;
+   BBoneBlackMC5883L::eOperatingMode mCurrentOpMode = BBoneBlackMC5883L::OPMODE_SINGLE;
 };
 
 #endif // BBONEBLACKMC5883L_HPP

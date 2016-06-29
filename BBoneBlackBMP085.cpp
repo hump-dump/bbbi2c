@@ -148,9 +148,12 @@ bool BBoneBlackBMP085::readUncompensatedTemperature( long & UncompensatedTempera
          }
          mI2CDevice.closeDevice();
       } else {
-         debug( "can't open device" );
+         debug( "can't initialize i2c device" );
          result = false;
       }
+   } else {
+      debug( "can't open device" );
+      result = false;
    }
 
    return result;
@@ -204,9 +207,12 @@ bool BBoneBlackBMP085::readUncompensatedPressure( long & UncompensatedPressure )
          }
          mI2CDevice.closeDevice();
       } else {
-         debug( "can't open device" );
+         debug( "can't initialize i2c device" );
          result = false;
       }
+   } else {
+      debug( "can't open device" );
+      result = false;
    }
 
    return result;

@@ -20,5 +20,7 @@ int main()
 
    BBoneBlackMC5883L mMC5883L;
 
+   cout << "mMC5883L.setGain " << ( mMC5883L.setGain( BBoneBlackMC5883L::RANGE_1_3GA ) ? "true" : "false" ) << endl;
+
    return 0;
 }
