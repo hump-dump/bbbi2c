@@ -12,7 +12,7 @@
 using namespace std;
 
 CPBBoneBlackI2C::CPBBoneBlackI2C( const std::string & i2cDevice )
-   : CPDebugMessage( "CPBBoneBlackI2C" )
+   : CPDebugMessage( "I2C" )
    , mI2CDevice( i2cDevice )
 {
 

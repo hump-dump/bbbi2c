@@ -4,7 +4,7 @@
 #include <iostream>
 
 BBoneBlackBMP085::BBoneBlackBMP085()
-   : CPDebugMessage( "BBoneBlackBMP085" )
+   : CPDebugMessage( "BMP085" )
    , mI2CDevice( "/dev/i2c-2" )
 {
    mI2CDevice.setParent( *this );

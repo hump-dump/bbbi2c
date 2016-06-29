@@ -6,7 +6,8 @@ CONFIG -= qt
 SOURCES += main.cpp \
     CPBBoneBlackI2C.cpp \
     CPDebugMessage.cpp \
-    BBoneBlackBMP085.cpp
+    BBoneBlackBMP085.cpp \
+    BBoneBlackMC5883L.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -14,6 +15,7 @@ qtcAddDeployment()
 HEADERS += \
     CPBBoneBlackI2C.hpp \
     CPDebugMessage.hpp \
-    BBoneBlackBMP085.hpp
+    BBoneBlackBMP085.hpp \
+    BBoneBlackMC5883L.hpp
 
 CONFIG   += c++11
