@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "BBoneBlackBMP085.hpp"
+#include "BBoneBlackMC5883L.hpp"
 
 using namespace std;
 
@@ -16,5 +17,8 @@ int main()
    long pressure = 0;
    mBMP085.getPressure( pressure );
    cout << "current pressure: " << pressure << endl;
+
+   BBoneBlackMC5883L mMC5883L;
+
    return 0;
 }
