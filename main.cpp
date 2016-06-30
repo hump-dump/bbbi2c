@@ -20,7 +20,14 @@ int main()
 
    BBoneBlackMC5883L mMC5883L;
 
-   cout << "mMC5883L.setGain " << ( mMC5883L.setGain( BBoneBlackMC5883L::RANGE_1_3GA ) ? "true" : "false" ) << endl;
+   bool result = mMC5883L.setGain( BBoneBlackMC5883L::RANGE_1_9GA );
+   cout << "mMC5883L.setGain " << ( result ? "true" : "false" ) << endl;
+
+   result = mMC5883L.setOperationMode( BBoneBlackMC5883L::OPMODE_CONTINUOUS );
+   cout << "mMC5883L.setOperationMode " << ( result ? "true" : "false" ) << endl;
+
+   result = mMC5883L.setI2CSpeed( BBoneBlackMC5883L::SPEED_HIGH );
+   cout << "mMC5883L.setI2CSpeed " << ( result ? "true" : "false" ) << endl;
 
    return 0;
 }
