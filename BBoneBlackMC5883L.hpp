@@ -78,12 +78,14 @@ public:
 
    bool setGain( const BBoneBlackMC5883L::eGainValue & gainValue );
    bool setOperationMode( const BBoneBlackMC5883L::eOperatingMode & opMode );
-   bool setI2CSpeed( const BBoneBlackMC5883L::eI2CSpeed speed );
+   bool setI2CSpeed( const BBoneBlackMC5883L::eI2CSpeed & speed );
+   bool setMeasurementMode( const BBoneBlackMC5883L::eMeasurementMode & measurementMode );
 private:
    CPBBoneBlackI2C mI2CDevice;
    BBoneBlackMC5883L::eGainValue mCurrentGain = BBoneBlackMC5883L::RANGE_1_3GA;
    BBoneBlackMC5883L::eOperatingMode mCurrentOpMode = BBoneBlackMC5883L::OPMODE_SINGLE;
    BBoneBlackMC5883L::eI2CSpeed mCurrentSpeed = BBoneBlackMC5883L::SPEED_LOW;
+   BBoneBlackMC5883L::eMeasurementMode mMeasurementMode =BBoneBlackMC5883L::MM_NORMAL;
 };
 
 #endif // BBONEBLACKMC5883L_HPP

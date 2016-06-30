@@ -39,7 +39,7 @@ bool BBoneBlackMC5883L::setOperationMode( const BBoneBlackMC5883L::eOperatingMod
          if( mI2CDevice.writeByteData( REG_MODE, mCurrentSpeed | opMode ) ) {
             mCurrentOpMode = opMode;
          } else {
-            debug( "error while configuring gain" );
+            debug( "error while configuring Operation Mode" );
             result = false;
          }
       }else {
@@ -53,7 +53,7 @@ bool BBoneBlackMC5883L::setOperationMode( const BBoneBlackMC5883L::eOperatingMod
    return result;
 }
 
-bool BBoneBlackMC5883L::setI2CSpeed( const BBoneBlackMC5883L::eI2CSpeed speed )
+bool BBoneBlackMC5883L::setI2CSpeed(const eI2CSpeed & speed )
 {
    bool result = true;
 
@@ -63,6 +63,29 @@ bool BBoneBlackMC5883L::setI2CSpeed( const BBoneBlackMC5883L::eI2CSpeed speed )
             mCurrentSpeed = speed;
          } else {
             debug( "error while configuring i2c speed" );
+            result = false;
+         }
+      }else {
+         debug( "can't initialize i2c device" );
+         result = false;
+      }
+   } else {
+      debug( "can't open device" );
+      result = false;
+   }
+   return result;
+}
+
+bool BBoneBlackMC5883L::setMeasurementMode( const BBoneBlackMC5883L::eMeasurementMode & measurementMode )
+{
+   bool result = true;
+
+   if( mI2CDevice.openDevice() ) {
+      if( mI2CDevice.initSlave( I2C_MC5883L_ADDR ) ) {
+         if( mI2CDevice.writeByteData( REG_CONF_A, measurementMode ) ) {
+            mЬeasurementMode = measurementMode;
+         } else {
+            debug( "error while configuring Measurement Mode" );
             result = false;
          }
       }else {
