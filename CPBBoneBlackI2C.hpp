@@ -6,8 +6,6 @@
 
 #include "CPDebugMessage.hpp"
 
-#define I2C_GYRO_ADDR   0x69 // 3 Axis Gyro	ST Microelectronics L3G4200D
-
 class CPBBoneBlackI2C
    : public CPDebugMessage
 {
@@ -17,10 +15,8 @@ public:
    bool openDevice();
    bool closeDevice();
    bool initSlave( const unsigned char & addr );
-   bool readByteData(const unsigned char & devRegister, uint8_t & data );
+   bool readByteData( const unsigned char & devRegister, uint8_t & data );
    bool writeByteData( const uint8_t & command, const uint8_t & value );
-   bool initGyro();
-   unsigned int readTemperature();
 protected:
    CPBBoneBlackI2C();
    CPBBoneBlackI2C( const CPBBoneBlackI2C & );
