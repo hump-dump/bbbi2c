@@ -29,5 +29,14 @@ int main()
    result = mMC5883L.setI2CSpeed( BBoneBlackMC5883L::SPEED_HIGH );
    cout << "mMC5883L.setI2CSpeed " << ( result ? "true" : "false" ) << endl;
 
+   result = mMC5883L.setMeasurementMode( BBoneBlackMC5883L::MM_NORMAL );
+   cout << "mMC5883L.setMeasurementMode " << ( result ? "true" : "false" ) << endl;
+
+   result = mMC5883L.setDataOutputRate( BBoneBlackMC5883L::RATE_75 );
+   cout << "mMC5883L.setDataOutputRate " << ( result ? "true" : "false" ) << endl;
+
+   result = mMC5883L.setMeasurementSamples( BBoneBlackMC5883L::MA_8 );
+   cout << "mMC5883L.setMeasurementSamples " << ( result ? "true" : "false" ) << endl;
+
    return 0;
 }

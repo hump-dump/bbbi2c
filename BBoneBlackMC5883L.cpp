@@ -82,10 +82,56 @@ bool BBoneBlackMC5883L::setMeasurementMode( const BBoneBlackMC5883L::eMeasuremen
 
    if( mI2CDevice.openDevice() ) {
       if( mI2CDevice.initSlave( I2C_MC5883L_ADDR ) ) {
-         if( mI2CDevice.writeByteData( REG_CONF_A, measurementMode ) ) {
-            mЬeasurementMode = measurementMode;
+         if( mI2CDevice.writeByteData( REG_CONF_A, mCurrentMeasurementSamples | mCurrentDataOutputRate | measurementMode ) ) {
+            mCurrentMeasurementMode = measurementMode;
          } else {
             debug( "error while configuring Measurement Mode" );
+            result = false;
+         }
+      }else {
+         debug( "can't initialize i2c device" );
+         result = false;
+      }
+   } else {
+      debug( "can't open device" );
+      result = false;
+   }
+   return result;
+}
+
+bool BBoneBlackMC5883L::setDataOutputRate( const BBoneBlackMC5883L::eDataOutputRate & dataOutputRate )
+{
+   bool result = true;
+
+   if( mI2CDevice.openDevice() ) {
+      if( mI2CDevice.initSlave( I2C_MC5883L_ADDR ) ) {
+         if( mI2CDevice.writeByteData( REG_CONF_A, mCurrentMeasurementSamples | dataOutputRate | mCurrentMeasurementMode ) ) {
+            mCurrentDataOutputRate = dataOutputRate;
+         } else {
+            debug( "error while configuring Data Output Rate" );
+            result = false;
+         }
+      }else {
+         debug( "can't initialize i2c device" );
+         result = false;
+      }
+   } else {
+      debug( "can't open device" );
+      result = false;
+   }
+   return result;
+}
+
+bool BBoneBlackMC5883L::setMeasurementSamples( const BBoneBlackMC5883L::eMeasurementSamples & measurementSamples )
+{
+   bool result = true;
+
+   if( mI2CDevice.openDevice() ) {
+      if( mI2CDevice.initSlave( I2C_MC5883L_ADDR ) ) {
+         if( mI2CDevice.writeByteData( REG_CONF_A, measurementSamples | mCurrentDataOutputRate | mCurrentMeasurementMode ) ) {
+            mCurrentMeasurementSamples = measurementSamples;
+         } else {
+            debug( "error while configuring Measurement Samples" );
             result = false;
          }
       }else {
