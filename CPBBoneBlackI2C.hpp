@@ -23,7 +23,7 @@ public:
       return &i2c;
    }
 
-   eResult setDeviceName( const std::string & deviceName );
+   CPBBoneBlackI2C::eResult setDeviceName( const std::string & deviceName );
    bool openDevice();
    bool closeDevice();
    bool initSlave( const unsigned char & addr );

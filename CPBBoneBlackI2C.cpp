@@ -11,9 +11,17 @@
 
 using namespace std;
 
-eResult CPBBoneBlackI2C::setDeviceName( const std::string & deviceName )
+CPBBoneBlackI2C::eResult CPBBoneBlackI2C::setDeviceName( const std::string & deviceName )
 {
-   mI2CDevice = deviceName;
+   CPBBoneBlackI2C::eResult result = RESULT_OK;
+
+   if( 0 > mI2CHandle ) {
+      mI2CDevice = deviceName;
+   } else {
+      result = CPBBoneBlackI2C::RESULT_ERROR;
+   }
+
+   return result;
 }
 
 bool CPBBoneBlackI2C::openDevice()
@@ -40,6 +48,7 @@ bool CPBBoneBlackI2C::closeDevice()
    if( 0 > mI2CHandle && 0 > close( mI2CHandle ) ) {
       debug( "error close device" );
    } else {
+      mI2CHandle = -1;
       result = true;
    }
 
