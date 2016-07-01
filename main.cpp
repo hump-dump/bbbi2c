@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "CPBBoneBlackI2C.hpp"
 #include "BBoneBlackBMP085.hpp"
 #include "BBoneBlackMC5883L.hpp"
 
@@ -8,6 +9,14 @@ using namespace std;
 int main()
 {
    cout << "Hello!" << endl;
+
+   CPBBoneBlackI2C::getInstance()->setDeviceName( "/dev/i2c-2" );
+
+   if( CPBBoneBlackI2C::RESULT_OK == CPBBoneBlackI2C::getInstance()->openDevice() ) {
+
+
+      CPBBoneBlackI2C::getInstance()->closeDevice();
+   }
 
    BBoneBlackBMP085 mBMP085;
    mBMP085.init();

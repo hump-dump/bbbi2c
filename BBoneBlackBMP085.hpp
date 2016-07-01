@@ -2,7 +2,6 @@
 #define BBONEBLACKBMP085_HPP
 
 #include "CPDebugMessage.hpp"
-#include "CPBBoneBlackI2C.hpp"
 #include <cstdint>
 
 #define I2C_BMP085_ADDR 0x77  // Barometer + Thermometer	Bosch BMP085
@@ -37,7 +36,6 @@ protected:
    bool readUncompensatedTemperature( long & UncompensatedTemperature );
    bool readUncompensatedPressure( long & UncompensatedPressure );
 private:
-   CPBBoneBlackI2C mI2CDevice;
    sBMP085CalibrationData mCalibrationData;
 };
 

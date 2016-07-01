@@ -1,19 +1,19 @@
 #include "BBoneBlackMC5883L.hpp"
 
+#include "CPBBoneBlackI2C.hpp"
+
 BBoneBlackMC5883L::BBoneBlackMC5883L()
    : CPDebugMessage( "MC5883L" )
-   , mI2CDevice( "/dev/i2c-2" )
 {
-   mI2CDevice.setParent( *this );
 }
 
 bool BBoneBlackMC5883L::setGain( const eGainValue & gainValue )
 {
    bool result = true;
 
-   if( mI2CDevice.openDevice() ) {
-      if( mI2CDevice.initSlave( I2C_MC5883L_ADDR ) ) {
-         if( mI2CDevice.writeByteData( REG_CONF_B, gainValue ) ) {
+   if( CPBBoneBlackI2C::RESULT_OK == CPBBoneBlackI2C::getInstance()->openDevice() ) {
+      if( CPBBoneBlackI2C::getInstance()->initSlave( I2C_MC5883L_ADDR ) ) {
+         if( CPBBoneBlackI2C::getInstance()->writeByteData( REG_CONF_B, gainValue ) ) {
             mCurrentGain = gainValue;
          } else {
             debug( "error while configuring gain" );
@@ -34,9 +34,9 @@ bool BBoneBlackMC5883L::setOperationMode( const BBoneBlackMC5883L::eOperatingMod
 {
    bool result = true;
 
-   if( mI2CDevice.openDevice() ) {
-      if( mI2CDevice.initSlave( I2C_MC5883L_ADDR ) ) {
-         if( mI2CDevice.writeByteData( REG_MODE, mCurrentSpeed | opMode ) ) {
+   if( CPBBoneBlackI2C::RESULT_OK == CPBBoneBlackI2C::getInstance()->openDevice() ) {
+      if( CPBBoneBlackI2C::getInstance()->initSlave( I2C_MC5883L_ADDR ) ) {
+         if( CPBBoneBlackI2C::getInstance()->writeByteData( REG_MODE, mCurrentSpeed | opMode ) ) {
             mCurrentOpMode = opMode;
          } else {
             debug( "error while configuring Operation Mode" );
@@ -57,9 +57,9 @@ bool BBoneBlackMC5883L::setI2CSpeed(const eI2CSpeed & speed )
 {
    bool result = true;
 
-   if( mI2CDevice.openDevice() ) {
-      if( mI2CDevice.initSlave( I2C_MC5883L_ADDR ) ) {
-         if( mI2CDevice.writeByteData( REG_MODE, speed | mCurrentOpMode ) ) {
+   if( CPBBoneBlackI2C::RESULT_OK == CPBBoneBlackI2C::getInstance()->openDevice() ) {
+      if( CPBBoneBlackI2C::getInstance()->initSlave( I2C_MC5883L_ADDR ) ) {
+         if( CPBBoneBlackI2C::getInstance()->writeByteData( REG_MODE, speed | mCurrentOpMode ) ) {
             mCurrentSpeed = speed;
          } else {
             debug( "error while configuring i2c speed" );
@@ -80,9 +80,9 @@ bool BBoneBlackMC5883L::setMeasurementMode( const BBoneBlackMC5883L::eMeasuremen
 {
    bool result = true;
 
-   if( mI2CDevice.openDevice() ) {
-      if( mI2CDevice.initSlave( I2C_MC5883L_ADDR ) ) {
-         if( mI2CDevice.writeByteData( REG_CONF_A, mCurrentMeasurementSamples | mCurrentDataOutputRate | measurementMode ) ) {
+   if( CPBBoneBlackI2C::RESULT_OK == CPBBoneBlackI2C::getInstance()->openDevice() ) {
+      if( CPBBoneBlackI2C::getInstance()->initSlave( I2C_MC5883L_ADDR ) ) {
+         if( CPBBoneBlackI2C::getInstance()->writeByteData( REG_CONF_A, mCurrentMeasurementSamples | mCurrentDataOutputRate | measurementMode ) ) {
             mCurrentMeasurementMode = measurementMode;
          } else {
             debug( "error while configuring Measurement Mode" );
@@ -103,9 +103,9 @@ bool BBoneBlackMC5883L::setDataOutputRate( const BBoneBlackMC5883L::eDataOutputR
 {
    bool result = true;
 
-   if( mI2CDevice.openDevice() ) {
-      if( mI2CDevice.initSlave( I2C_MC5883L_ADDR ) ) {
-         if( mI2CDevice.writeByteData( REG_CONF_A, mCurrentMeasurementSamples | dataOutputRate | mCurrentMeasurementMode ) ) {
+   if( CPBBoneBlackI2C::RESULT_OK == CPBBoneBlackI2C::getInstance()->openDevice() ) {
+      if( CPBBoneBlackI2C::getInstance()->initSlave( I2C_MC5883L_ADDR ) ) {
+         if( CPBBoneBlackI2C::getInstance()->writeByteData( REG_CONF_A, mCurrentMeasurementSamples | dataOutputRate | mCurrentMeasurementMode ) ) {
             mCurrentDataOutputRate = dataOutputRate;
          } else {
             debug( "error while configuring Data Output Rate" );
@@ -126,9 +126,9 @@ bool BBoneBlackMC5883L::setMeasurementSamples( const BBoneBlackMC5883L::eMeasure
 {
    bool result = true;
 
-   if( mI2CDevice.openDevice() ) {
-      if( mI2CDevice.initSlave( I2C_MC5883L_ADDR ) ) {
-         if( mI2CDevice.writeByteData( REG_CONF_A, measurementSamples | mCurrentDataOutputRate | mCurrentMeasurementMode ) ) {
+   if( CPBBoneBlackI2C::RESULT_OK == CPBBoneBlackI2C::getInstance()->openDevice() ) {
+      if( CPBBoneBlackI2C::getInstance()->initSlave( I2C_MC5883L_ADDR ) ) {
+         if( CPBBoneBlackI2C::getInstance()->writeByteData( REG_CONF_A, measurementSamples | mCurrentDataOutputRate | mCurrentMeasurementMode ) ) {
             mCurrentMeasurementSamples = measurementSamples;
          } else {
             debug( "error while configuring Measurement Samples" );

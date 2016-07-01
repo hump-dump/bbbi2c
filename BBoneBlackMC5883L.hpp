@@ -2,7 +2,6 @@
 #define BBONEBLACKMC5883L_HPP
 
 #include "CPDebugMessage.hpp"
-#include "CPBBoneBlackI2C.hpp"
 
 #define I2C_MC5883L_ADDR 0x1E  // 3 Axis Magnetometer	Honeywell MC5883L
 
@@ -85,7 +84,6 @@ public:
    bool setDataOutputRate( const BBoneBlackMC5883L::eDataOutputRate & dataOutputRate );
    bool setMeasurementSamples( const BBoneBlackMC5883L::eMeasurementSamples & measurementSamples );
 private:
-   CPBBoneBlackI2C mI2CDevice;
    BBoneBlackMC5883L::eGainValue mCurrentGain = BBoneBlackMC5883L::RANGE_1_3GA;
    BBoneBlackMC5883L::eOperatingMode mCurrentOpMode = BBoneBlackMC5883L::OPMODE_SINGLE;
    BBoneBlackMC5883L::eI2CSpeed mCurrentSpeed = BBoneBlackMC5883L::SPEED_LOW;
