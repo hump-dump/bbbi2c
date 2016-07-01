@@ -10,8 +10,20 @@ class CPBBoneBlackI2C
    : public CPDebugMessage
 {
 public:
-   CPBBoneBlackI2C( const std::string & i2cDevice );
+   enum eResult {
+      RESULT_OK,
+      RESULT_ERROR,
+      RESULT_NOT_INITIALIZED,
+      RESULT_NOT_OPENED
+   };
 
+   static CPBBoneBlackI2C* getInstance()
+   {
+      static CPBBoneBlackI2C i2c;
+      return &i2c;
+   }
+
+   eResult setDeviceName( const std::string & deviceName );
    bool openDevice();
    bool closeDevice();
    bool initSlave( const unsigned char & addr );

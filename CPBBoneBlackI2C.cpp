@@ -11,11 +11,9 @@
 
 using namespace std;
 
-CPBBoneBlackI2C::CPBBoneBlackI2C( const std::string & i2cDevice )
-   : CPDebugMessage( "I2C" )
-   , mI2CDevice( i2cDevice )
+eResult CPBBoneBlackI2C::setDeviceName( const std::string & deviceName )
 {
-
+   mI2CDevice = deviceName;
 }
 
 bool CPBBoneBlackI2C::openDevice()
