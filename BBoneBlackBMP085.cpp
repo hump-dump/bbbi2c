@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <iostream>
 
-#include "CPBBoneBlackI2C.hpp"
+#include "BBoneBlackI2C/CPBBoneBlackI2C.hpp"
 
 BBoneBlackBMP085::BBoneBlackBMP085()
    : CPDebugMessage( "BMP085" )
