@@ -1,0 +1,7 @@
+/home/user/projects/bbbi2c/BBoneBlackI2C/build/CMakeFiles/install.dir
+/home/user/projects/bbbi2c/BBoneBlackI2C/build/CMakeFiles/rebuild_cache.dir
+/home/user/projects/bbbi2c/BBoneBlackI2C/build/CMakeFiles/list_install_components.dir
+/home/user/projects/bbbi2c/BBoneBlackI2C/build/CMakeFiles/bbbi2c.dir
+/home/user/projects/bbbi2c/BBoneBlackI2C/build/CMakeFiles/install/local.dir
+/home/user/projects/bbbi2c/BBoneBlackI2C/build/CMakeFiles/install/strip.dir
+/home/user/projects/bbbi2c/BBoneBlackI2C/build/CMakeFiles/edit_cache.dir

@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/user/projects/bbbi2c/BBoneBlackI2C/CPBBoneBlackI2C.cpp
+CPBBoneBlackI2C.hpp
+/home/user/projects/bbbi2c/BBoneBlackI2C/CPBBoneBlackI2C.hpp
+unistd.h
+-
+stdio.h
+-
+fcntl.h
+-
+errno.h
+-
+string.h
+-
+sys/ioctl.h
+-
+linux/i2c-dev.h
+-
+iostream
+-
+
+/home/user/projects/bbbi2c/BBoneBlackI2C/CPBBoneBlackI2C.hpp
+string
+-
+cstdint
+-
+

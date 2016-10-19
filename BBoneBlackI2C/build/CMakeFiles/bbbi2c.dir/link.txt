@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbbbi2c.a  CMakeFiles/bbbi2c.dir/CPBBoneBlackI2C.cpp.o
+/usr/bin/ranlib libbbbi2c.a
