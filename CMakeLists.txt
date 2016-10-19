@@ -7,4 +7,4 @@ add_subdirectory( BBoneBlackI2C )
 add_subdirectory( BBoneBlackMC5883L )
 add_subdirectory( BBoneBlackBMP085 )
 
-# add_executable( gy801 main.cpp )
+add_executable( gy801 main.cpp )
