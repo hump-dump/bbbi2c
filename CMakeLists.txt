@@ -4,4 +4,8 @@ SET( CMAKE_INSTALL_PREFIX=../install )
 
 add_subdirectory( BBoneBlackI2C )
 
-add_executable( gy801 )
+add_executable( gy801
+   main.cpp
+   BBoneBlackMC5883L.cpp
+   BBoneBlackBMP085.cpp
+   )
