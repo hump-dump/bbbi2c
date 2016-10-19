@@ -9,5 +9,7 @@ add_library( mc5883l_static STATIC ${LIBSRC} )
 
 set_target_properties( mc5883l_static PROPERTIES OUTPUT_NAME mc5883l )
 
+link_libraries( bbbi2c )
+
 install (TARGETS mc5883l DESTINATION lib )
 install (FILES BBoneBlackMC5883L.hpp DESTINATION include )
