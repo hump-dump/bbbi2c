@@ -4,10 +4,9 @@ SET( CMAKE_CXX_FLAGS "-std=c++0x" )
 
 set( LIBSRC BBoneBlackBMP085.cpp )
 
-add_library( bmp085 SHARED ${LIBSRC} )
-add_library( bmp085_static STATIC ${LIBSRC} )
+add_library( bmp085 STATIC ${LIBSRC} )
 
-set_target_properties( bmp085_static PROPERTIES OUTPUT_NAME bmp085 )
+link_libraries( bbbi2c )
 
 install (TARGETS bmp085 DESTINATION lib )
 install (FILES BBoneBlackBMP085.hpp DESTINATION include )

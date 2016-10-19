@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <iostream>
 
-#include "BBoneBlackI2C/CPBBoneBlackI2C.hpp"
+#include "../BBoneBlackI2C/CPBBoneBlackI2C.hpp"
 
 using namespace std;
 
