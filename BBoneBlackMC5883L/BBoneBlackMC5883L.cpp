@@ -1,5 +1,6 @@
-#include "BBoneBlackMC5883L.hpp"
+#include <iostream>
 
+#include "BBoneBlackMC5883L.hpp"
 #include "../BBoneBlackI2C/CPBBoneBlackI2C.hpp"
 
 BBoneBlackMC5883L::BBoneBlackMC5883L()
