@@ -1,14 +1,12 @@
 #ifndef BBONEBLACKBMP085_HPP
 #define BBONEBLACKBMP085_HPP
 
-#include "CPDebugMessage.hpp"
 #include <cstdint>
 
 #define I2C_BMP085_ADDR 0x77  // Barometer + Thermometer	Bosch BMP085
 #define BMP085_OSS         0  // oversampling setting( ultra low power mode )
 
 class BBoneBlackBMP085
-   : public CPDebugMessage
 {
 public:
    BBoneBlackBMP085();

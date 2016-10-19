@@ -1,12 +1,9 @@
 #ifndef BBONEBLACKMC5883L_HPP
 #define BBONEBLACKMC5883L_HPP
 
-#include "CPDebugMessage.hpp"
-
 #define I2C_MC5883L_ADDR 0x1E  // 3 Axis Magnetometer	Honeywell MC5883L
 
 class BBoneBlackMC5883L
-   : public CPDebugMessage
 {
 public:
    enum eRegisters {

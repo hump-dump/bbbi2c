@@ -5,8 +5,9 @@
 
 #include "BBoneBlackI2C/CPBBoneBlackI2C.hpp"
 
+using namespace std;
+
 BBoneBlackBMP085::BBoneBlackBMP085()
-   : CPDebugMessage( "BMP085" )
 {
 }
 
@@ -112,12 +113,12 @@ void BBoneBlackBMP085::readCalibrationData()
             result = false;
          }
       } else {
-         debug( "can't initialze BMP085" );
+         cout << "can't initialze BMP085" << endl;
          result = false;
       }
       CPBBoneBlackI2C::getInstance()->closeDevice();
    } else {
-      debug( "can't open device" );
+      cout << "can't open device" << endl;
       result = false;
    }
    mCalibrationData.isActual = result;
@@ -148,11 +149,11 @@ bool BBoneBlackBMP085::readUncompensatedTemperature( long & UncompensatedTempera
          }
          CPBBoneBlackI2C::getInstance()->closeDevice();
       } else {
-         debug( "can't initialize i2c device" );
+         cout << "can't initialize i2c device" << endl;
          result = false;
       }
    } else {
-      debug( "can't open device" );
+      cout << "can't open device" << endl;
       result = false;
    }
 
@@ -197,21 +198,21 @@ bool BBoneBlackBMP085::readUncompensatedPressure( long & UncompensatedPressure )
                UncompensatedPressure = ( ( msb << 16 ) + ( lsb << 8 ) + xlsb ) >> ( 8 - BMP085_OSS );
                std::cout << "readUncompensatedTemperature UncompensatedPressure " << UncompensatedPressure << std::endl;
             } else {
-               debug( "reading pressure data failed" );
+               cout << "reading pressure data failed" << endl;
                result = false;
             }
 
          } else {
-            debug( "write data failed" );
+            cout << "write data failed" << endl;
             result = false;
          }
          CPBBoneBlackI2C::getInstance()->closeDevice();
       } else {
-         debug( "can't initialize i2c device" );
+         cout << "can't initialize i2c device" << endl;
          result = false;
       }
    } else {
-      debug( "can't open device" );
+      cout << "can't open device" << endl;
       result = false;
    }
 

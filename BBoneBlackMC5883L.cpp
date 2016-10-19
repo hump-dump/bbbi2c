@@ -3,7 +3,6 @@
 #include "BBoneBlackI2C/CPBBoneBlackI2C.hpp"
 
 BBoneBlackMC5883L::BBoneBlackMC5883L()
-   : CPDebugMessage( "MC5883L" )
 {
 }
 
@@ -16,15 +15,15 @@ bool BBoneBlackMC5883L::setGain( const eGainValue & gainValue )
          if( CPBBoneBlackI2C::getInstance()->writeByteData( REG_CONF_B, gainValue ) ) {
             mCurrentGain = gainValue;
          } else {
-            debug( "error while configuring gain" );
+            cout << "error while configuring gain" << endl;
             result = false;
          }
       }else {
-         debug( "can't initialize i2c device" );
+         cout << "can't initialize i2c device" << endl;
          result = false;
       }
    } else {
-      debug( "can't open device" );
+      cout << "can't open device" << endl;
       result = false;
    }
    return result;
@@ -39,15 +38,15 @@ bool BBoneBlackMC5883L::setOperationMode( const BBoneBlackMC5883L::eOperatingMod
          if( CPBBoneBlackI2C::getInstance()->writeByteData( REG_MODE, mCurrentSpeed | opMode ) ) {
             mCurrentOpMode = opMode;
          } else {
-            debug( "error while configuring Operation Mode" );
+            cout << "error while configuring Operation Mode" << endl;
             result = false;
          }
       }else {
-         debug( "can't initialize i2c device" );
+         cout << "can't initialize i2c device" << endl;
          result = false;
       }
    } else {
-      debug( "can't open device" );
+      cout << "can't open device" << endl;
       result = false;
    }
    return result;
@@ -62,15 +61,15 @@ bool BBoneBlackMC5883L::setI2CSpeed(const eI2CSpeed & speed )
          if( CPBBoneBlackI2C::getInstance()->writeByteData( REG_MODE, speed | mCurrentOpMode ) ) {
             mCurrentSpeed = speed;
          } else {
-            debug( "error while configuring i2c speed" );
+            cout << "error while configuring i2c speed" << endl;
             result = false;
          }
       }else {
-         debug( "can't initialize i2c device" );
+         cout << "can't initialize i2c device" << endl;
          result = false;
       }
    } else {
-      debug( "can't open device" );
+      cout << "can't open device" << endl;
       result = false;
    }
    return result;
@@ -85,15 +84,15 @@ bool BBoneBlackMC5883L::setMeasurementMode( const BBoneBlackMC5883L::eMeasuremen
          if( CPBBoneBlackI2C::getInstance()->writeByteData( REG_CONF_A, mCurrentMeasurementSamples | mCurrentDataOutputRate | measurementMode ) ) {
             mCurrentMeasurementMode = measurementMode;
          } else {
-            debug( "error while configuring Measurement Mode" );
+            cout << "error while configuring Measurement Mode" << endl;
             result = false;
          }
       }else {
-         debug( "can't initialize i2c device" );
+         cout << "can't initialize i2c device" << endl;
          result = false;
       }
    } else {
-      debug( "can't open device" );
+      cout << "can't open device" << endl;
       result = false;
    }
    return result;
@@ -108,15 +107,15 @@ bool BBoneBlackMC5883L::setDataOutputRate( const BBoneBlackMC5883L::eDataOutputR
          if( CPBBoneBlackI2C::getInstance()->writeByteData( REG_CONF_A, mCurrentMeasurementSamples | dataOutputRate | mCurrentMeasurementMode ) ) {
             mCurrentDataOutputRate = dataOutputRate;
          } else {
-            debug( "error while configuring Data Output Rate" );
+            cout << "error while configuring Data Output Rate" << endl;
             result = false;
          }
       }else {
-         debug( "can't initialize i2c device" );
+         cout << "can't initialize i2c device" << endl;
          result = false;
       }
    } else {
-      debug( "can't open device" );
+      cout << "can't open device" << endl;
       result = false;
    }
    return result;
@@ -131,15 +130,15 @@ bool BBoneBlackMC5883L::setMeasurementSamples( const BBoneBlackMC5883L::eMeasure
          if( CPBBoneBlackI2C::getInstance()->writeByteData( REG_CONF_A, measurementSamples | mCurrentDataOutputRate | mCurrentMeasurementMode ) ) {
             mCurrentMeasurementSamples = measurementSamples;
          } else {
-            debug( "error while configuring Measurement Samples" );
+            cout << "error while configuring Measurement Samples" << endl;
             result = false;
          }
       }else {
-         debug( "can't initialize i2c device" );
+         cout << "can't initialize i2c device" << endl;
          result = false;
       }
    } else {
-      debug( "can't open device" );
+      cout << "can't open device" << endl;
       result = false;
    }
    return result;

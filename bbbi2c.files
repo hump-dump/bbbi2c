@@ -1,0 +1,7 @@
+BBoneBlackI2C/CPBBoneBlackI2C.cpp
+BBoneBlackI2C/CPBBoneBlackI2C.hpp
+BBoneBlackBMP085.cpp
+BBoneBlackBMP085.hpp
+BBoneBlackMC5883L.cpp
+BBoneBlackMC5883L.hpp
+main.cpp
