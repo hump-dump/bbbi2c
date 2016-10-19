@@ -1,8 +1,8 @@
 #include <iostream>
 
 #include "BBoneBlackI2C/CPBBoneBlackI2C.hpp"
-#include "BBoneBlackBMP085.hpp"
-#include "BBoneBlackMC5883L.hpp"
+#include "./BBoneBlackBMP085/BBoneBlackBMP085.hpp"
+#include "./BBoneBlackMC5883L/BBoneBlackMC5883L.hpp"
 
 using namespace std;
 

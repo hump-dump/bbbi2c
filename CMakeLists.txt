@@ -1,8 +1,7 @@
 cmake_minimum_required ( VERSION 2.6 )
 
 project( GY801 )
-
-SET( CMAKE_INSTALL_PREFIX=../install )
+SET( CMAKE_CXX_FLAGS "-std=c++0x" )
 
 add_subdirectory( BBoneBlackI2C )
 add_subdirectory( BBoneBlackMC5883L )
