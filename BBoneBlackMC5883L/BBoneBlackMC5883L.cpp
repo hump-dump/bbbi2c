@@ -3,6 +3,8 @@
 #include "BBoneBlackMC5883L.hpp"
 #include "../BBoneBlackI2C/CPBBoneBlackI2C.hpp"
 
+using namespace std;
+
 BBoneBlackMC5883L::BBoneBlackMC5883L()
 {
 }
