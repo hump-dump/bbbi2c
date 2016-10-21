@@ -3,6 +3,8 @@
 
 #include <string>
 #include <cstdint>
+#include <sys/ioctl.h>
+#include <linux/i2c-dev.h>
 
 class CPBBoneBlackI2C
 {
