@@ -1,6 +1,7 @@
 cmake_minimum_required ( VERSION 2.6 )
 
 SET( CMAKE_CXX_FLAGS "-std=c++0x" )
+add_compile_options( -D_GLIBCXX_USE_CXX11_ABI=1 )
 
 set( LIBSRC BBoneBlackBMP085.cpp )
 
