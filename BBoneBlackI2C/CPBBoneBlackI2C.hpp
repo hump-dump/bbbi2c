@@ -48,7 +48,6 @@ inline bool CPBBoneBlackI2C::isOpened() const
 // -----------------------------------------
 // Workaround for cross compilation MINI2440
 
-
 static inline __s32 i2c_smbus_access(int file, char read_write, __u8 command,
                                      int size, union i2c_smbus_data *data)
 {
@@ -61,34 +60,23 @@ static inline __s32 i2c_smbus_access(int file, char read_write, __u8 command,
    return ioctl(file,I2C_SMBUS,&args);
 }
 
-/* Returns the number of read bytes */
-static inline __s32 i2c_smbus_read_block_data(int file, __u8 command,
-                                              __u8 *values)
+static inline __s32 i2c_smbus_read_byte_data(int file, __u8 command)
 {
    union i2c_smbus_data data;
-   int i;
    if (i2c_smbus_access(file,I2C_SMBUS_READ,command,
-                        I2C_SMBUS_BLOCK_DATA,&data))
+                        I2C_SMBUS_BYTE_DATA,&data))
       return -1;
-   else {
-      for (i = 1; i <= data.block[0]; i++)
-         values[i-1] = data.block[i];
-      return data.block[0];
-   }
+   else
+      return 0x0FF & data.byte;
 }
 
-static inline __s32 i2c_smbus_write_block_data(int file, __u8 command,
-                                               __u8 length, const __u8 *values)
+static inline __s32 i2c_smbus_write_byte_data(int file, __u8 command,
+                                              __u8 value)
 {
    union i2c_smbus_data data;
-   int i;
-   if (length > 32)
-      length = 32;
-   for (i = 1; i <= length; i++)
-      data.block[i] = values[i-1];
-   data.block[0] = length;
+   data.byte = value;
    return i2c_smbus_access(file,I2C_SMBUS_WRITE,command,
-                           I2C_SMBUS_BLOCK_DATA, &data);
+                           I2C_SMBUS_BYTE_DATA, &data);
 }
 
 // -----------------------------------------
