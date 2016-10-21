@@ -47,6 +47,19 @@ inline bool CPBBoneBlackI2C::isOpened() const
 // -----------------------------------------
 // Workaround for cross compilation MINI2440
 
+
+static inline __s32 i2c_smbus_access(int file, char read_write, __u8 command,
+                                     int size, union i2c_smbus_data *data)
+{
+   struct i2c_smbus_ioctl_data args;
+
+   args.read_write = read_write;
+   args.command = command;
+   args.size = size;
+   args.data = data;
+   return ioctl(file,I2C_SMBUS,&args);
+}
+
 /* Returns the number of read bytes */
 static inline __s32 i2c_smbus_read_block_data(int file, __u8 command,
                                               __u8 *values)
